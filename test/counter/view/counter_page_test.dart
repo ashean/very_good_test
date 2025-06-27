@@ -75,7 +75,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(value: counterCubit, child: const CounterView()),
       );
-      
+
       expect(find.byIcon(Icons.edit), findsOneWidget);
     });
   });
