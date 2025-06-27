@@ -2,11 +2,18 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 
-class FormCubit extends Cubit<String?> {
-  FormCubit() : super(null);
+import 'package:my_app/persistence/submission_repository.dart';
 
-  void submitText(String text) {
+class FormCubit extends Cubit<String?> {
+  FormCubit({SubmissionRepository? repository})
+    : _repository = repository ?? const SubmissionRepository(),
+      super(null);
+
+  final SubmissionRepository _repository;
+
+  Future<void> submitText(String text) async {
     log('Form submitted with text: $text');
+    await _repository.saveSubmission(text);
     emit(text);
   }
 }

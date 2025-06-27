@@ -61,7 +61,7 @@ void main() {
       tester,
     ) async {
       when(() => formCubit.state).thenReturn(null);
-      when(() => formCubit.submitText(any())).thenReturn(null);
+      when(() => formCubit.submitText(any())).thenAnswer((_) async {});
 
       await tester.pumpApp(
         BlocProvider.value(value: formCubit, child: const FormView()),
@@ -76,7 +76,7 @@ void main() {
 
     testWidgets('clears text field after submission', (tester) async {
       when(() => formCubit.state).thenReturn(null);
-      when(() => formCubit.submitText(any())).thenReturn(null);
+      when(() => formCubit.submitText(any())).thenAnswer((_) async {});
 
       await tester.pumpApp(
         BlocProvider.value(value: formCubit, child: const FormView()),
@@ -95,7 +95,7 @@ void main() {
       tester,
     ) async {
       when(() => formCubit.state).thenReturn(null);
-      when(() => formCubit.submitText(any())).thenReturn(null);
+      when(() => formCubit.submitText(any())).thenAnswer((_) async {});
 
       await tester.pumpApp(
         BlocProvider.value(value: formCubit, child: const FormView()),
