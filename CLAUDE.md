@@ -10,7 +10,10 @@
 ### Development Workflow
 - Always create feature branches (never work directly on main)
 - Branch naming: `feature/description` or `fix/description`
-- Run `flutter test` and `flutter analyze` before commits
+- Run pre-commit checks before commits:
+  - `flutter test` - All tests must pass
+  - `flutter analyze lib test` - No lint issues
+  - `dart format --line-length 80 --set-exit-if-changed lib test` - Proper formatting
 - All tests must pass before merging
 
 ### Branch Cleanup After Merge
@@ -29,4 +32,13 @@ git remote prune origin
 ## Commands
 - Test: `flutter test`
 - Analyze: `flutter analyze lib test`
+- Format: `dart format --line-length 80 --set-exit-if-changed lib test`
 - Build: `flutter build`
+
+## Pre-commit Checklist
+Run these commands before committing:
+```bash
+flutter test
+flutter analyze lib test  
+dart format --line-length 80 --set-exit-if-changed lib test
+```
