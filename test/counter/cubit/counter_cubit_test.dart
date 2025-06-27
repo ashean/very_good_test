@@ -33,11 +33,10 @@ void main() {
     blocTest<CounterCubit, int>(
       'emits [0] when reset is called after incrementing',
       build: CounterCubit.new,
-      act: (cubit) {
-        cubit.increment();
-        cubit.increment();
-        cubit.reset();
-      },
+      act: (cubit) => cubit
+        ..increment()
+        ..increment()
+        ..reset(),
       expect: () => [equals(1), equals(2), equals(0)],
     );
   });
