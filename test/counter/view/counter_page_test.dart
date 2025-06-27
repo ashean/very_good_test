@@ -89,6 +89,8 @@ void main() {
 
       // Tap the edit icon to execute the navigation callback (for coverage)
       await tester.tap(find.byIcon(Icons.edit));
+      // Pump to trigger route builder execution
+      await tester.pump();
     });
   });
 }
