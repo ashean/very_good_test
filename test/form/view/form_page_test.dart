@@ -90,5 +90,22 @@ void main() {
       final textField = tester.widget<TextField>(find.byType(TextField));
       expect(textField.controller?.text, isEmpty);
     });
+
+    testWidgets('calls submitText when Enter is pressed in text field', (
+      tester,
+    ) async {
+      when(() => formCubit.state).thenReturn(null);
+      when(() => formCubit.submitText(any())).thenReturn(null);
+
+      await tester.pumpApp(
+        BlocProvider.value(value: formCubit, child: const FormView()),
+      );
+
+      const testText = 'Test input';
+      await tester.enterText(find.byType(TextField), testText);
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+
+      verify(() => formCubit.submitText(testText)).called(1);
+    });
   });
 }
