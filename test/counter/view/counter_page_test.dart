@@ -57,5 +57,17 @@ void main() {
       await tester.tap(find.byIcon(Icons.remove));
       verify(() => counterCubit.decrement()).called(1);
     });
+
+    testWidgets('calls reset when reset button is tapped', (
+      tester,
+    ) async {
+      when(() => counterCubit.state).thenReturn(0);
+      when(() => counterCubit.reset()).thenReturn(null);
+      await tester.pumpApp(
+        BlocProvider.value(value: counterCubit, child: const CounterView()),
+      );
+      await tester.tap(find.byIcon(Icons.refresh));
+      verify(() => counterCubit.reset()).called(1);
+    });
   });
 }
