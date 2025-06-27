@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/counter/counter.dart';
+import 'package:my_app/form/form.dart';
 import 'package:my_app/l10n/l10n.dart';
 
 class CounterPage extends StatelessWidget {
@@ -22,7 +23,19 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(
+        title: Text(l10n.counterAppBarTitle),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const FormPage(),
+              ),
+            ),
+            icon: const Icon(Icons.edit),
+          ),
+        ],
+      ),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
