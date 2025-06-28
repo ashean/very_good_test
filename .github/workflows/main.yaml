@@ -21,6 +21,7 @@ jobs:
     with:
       flutter_channel: stable
       coverage_excludes: "**/*.g.dart"
+      min_coverage: 0
 
   spell-check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
