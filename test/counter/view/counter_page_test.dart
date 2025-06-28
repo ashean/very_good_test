@@ -89,7 +89,7 @@ void main() {
 
       // Verify storage icon exists and is tappable
       expect(find.byIcon(Icons.storage), findsOneWidget);
-      
+
       // Just verify we can tap it without completing navigation
       // (to avoid drift database timer issues in this test)
       final iconButtonFinder = find.ancestor(
