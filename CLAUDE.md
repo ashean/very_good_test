@@ -74,12 +74,13 @@ try {
 - `avoid_catches_without_on_clauses` - Specify exception types
 - `directives_ordering` - Order imports correctly
 - `lines_longer_than_80_chars` - Break long lines
-- `eol_at_end_of_file` - Add newline at end
+- `eol_at_end_of_file` - Add newline at end (use `dart format <file>` to fix)
 
 ## Commands
 - Test: `flutter test`
 - Analyze: `flutter analyze lib test`
 - Format: `dart format --line-length 80 --set-exit-if-changed lib test`
+- **Fix specific formatting issues**: `dart format <file>` (useful for `eol_at_end_of_file` errors)
 - Build: `flutter build`
 - **Web with persistent database**: `flutter run --target lib/main_development.dart -d chrome --web-port=8080`
 

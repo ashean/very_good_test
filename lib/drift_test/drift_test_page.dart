@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:my_app/drift_test/drift_database.dart';
 
 class DriftTestPage extends StatefulWidget {
-  const DriftTestPage({super.key});
+  const DriftTestPage({super.key, this.database});
+
+  final AppDatabase? database;
 
   @override
   State<DriftTestPage> createState() => _DriftTestPageState();
@@ -12,19 +14,28 @@ class DriftTestPage extends StatefulWidget {
 
 class _DriftTestPageState extends State<DriftTestPage> {
   late final AppDatabase database;
+  late final bool shouldCloseDatabase;
   List<TodoItem> items = [];
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    database = AppDatabase();
+    if (widget.database != null) {
+      database = widget.database!;
+      shouldCloseDatabase = false;
+    } else {
+      database = AppDatabase();
+      shouldCloseDatabase = true;
+    }
     _loadItems();
   }
 
   @override
   void dispose() {
-    database.close();
+    if (shouldCloseDatabase) {
+      database.close();
+    }
     super.dispose();
   }
 

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/counter/counter.dart';
 import 'package:my_app/drift_test/drift_test_page.dart';
-import 'package:my_app/form/form.dart';
 import 'package:my_app/l10n/l10n.dart';
-import 'package:my_app/submissions/submissions.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
@@ -28,22 +26,6 @@ class CounterView extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.counterAppBarTitle),
         actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const FormPage(),
-              ),
-            ),
-            icon: const Icon(Icons.edit),
-          ),
-          IconButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const SubmissionsPage(),
-              ),
-            ),
-            icon: const Icon(Icons.list),
-          ),
           IconButton(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
