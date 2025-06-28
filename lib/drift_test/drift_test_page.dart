@@ -48,13 +48,15 @@ class _DriftTestPageState extends State<DriftTestPage> {
 
   Future<void> _addItem() async {
     try {
-      await database.into(database.todoItems).insert(
-        TodoItemsCompanion.insert(
-          title: 'Item ${items.length + 1}',
-          content: 'Test content ${DateTime.now().millisecondsSinceEpoch}',
-          createdAt: Value(DateTime.now()),
-        ),
-      );
+      await database
+          .into(database.todoItems)
+          .insert(
+            TodoItemsCompanion.insert(
+              title: 'Item ${items.length + 1}',
+              content: 'Test content ${DateTime.now().millisecondsSinceEpoch}',
+              createdAt: Value(DateTime.now()),
+            ),
+          );
       await _loadItems();
     } on Exception catch (e) {
       if (mounted) {
@@ -80,20 +82,20 @@ class _DriftTestPageState extends State<DriftTestPage> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : items.isEmpty
-              ? const Center(
-                  child: Text('No items yet. Tap + to add one!'),
-                )
-              : ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final item = items[index];
-                    return ListTile(
-                      title: Text(item.title),
-                      subtitle: Text(item.content),
-                      trailing: Text('ID: ${item.id}'),
-                    );
-                  },
-                ),
+          ? const Center(
+              child: Text('No items yet. Tap + to add one!'),
+            )
+          : ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return ListTile(
+                  title: Text(item.title),
+                  subtitle: Text(item.content),
+                  trailing: Text('ID: ${item.id}'),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addItem,
         child: const Icon(Icons.add),
