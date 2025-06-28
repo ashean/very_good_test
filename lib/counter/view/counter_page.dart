@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/counter/counter.dart';
-import 'package:my_app/form/form.dart';
+import 'package:my_app/drift_test/drift_test_page.dart';
 import 'package:my_app/l10n/l10n.dart';
 
 class CounterPage extends StatelessWidget {
@@ -29,10 +29,10 @@ class CounterView extends StatelessWidget {
           IconButton(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) => const FormPage(),
+                builder: (_) => const DriftTestPage(),
               ),
             ),
-            icon: const Icon(Icons.edit),
+            icon: const Icon(Icons.storage),
           ),
         ],
       ),

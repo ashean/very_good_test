@@ -8,15 +8,20 @@ environment:
 
 dependencies:
   bloc: ^9.0.0
+  drift: ^2.27.0
+  drift_flutter: ^0.2.4
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
+  path_provider: ^2.1.5
 
 dev_dependencies:
   bloc_test: ^10.0.0
+  build_runner: ^2.4.15
+  drift_dev: ^2.27.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
