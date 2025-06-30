@@ -39,8 +39,8 @@ class UserProfileRepository {
   }
 
   Future<int> deleteUserProfile(int id) {
-    return (_database.delete(_database.userProfiles)
-          ..where((profile) => profile.id.equals(id)))
-        .go();
+    return (_database.delete(
+      _database.userProfiles,
+    )..where((profile) => profile.id.equals(id))).go();
   }
 }
