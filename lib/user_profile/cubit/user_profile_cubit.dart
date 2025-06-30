@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+import 'package:my_app/core/logging/app_logger.dart';
 import 'package:my_app/user_profile/cubit/user_profile_state.dart';
 import 'package:my_app/user_profile/repository/user_profile_repository.dart';
 
@@ -23,7 +24,13 @@ class UserProfileCubit extends Cubit<UserProfileState> {
         weightKg: weightKg,
       );
       emit(const UserProfileFormSuccess());
-    } on Exception catch (e) {
+    } on Exception catch (e, stackTrace) {
+      AppLogger.logError(
+        'Failed to save user profile',
+        e,
+        stackTrace,
+        'UserProfileCubit',
+      );
       emit(UserProfileFormError('Failed to save profile: $e'));
     }
   }
@@ -33,7 +40,13 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     try {
       final profiles = await _repository.getAllUserProfiles();
       emit(UserProfileListLoaded(profiles));
-    } on Exception catch (e) {
+    } on Exception catch (e, stackTrace) {
+      AppLogger.logError(
+        'Failed to load user profiles',
+        e,
+        stackTrace,
+        'UserProfileCubit',
+      );
       emit(UserProfileListError('Failed to load profiles: $e'));
     }
   }

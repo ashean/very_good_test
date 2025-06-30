@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 
+import 'package:my_app/core/logging/app_logger.dart';
 import 'package:my_app/drift_test/drift_database.dart';
 
 class DriftTestPage extends StatefulWidget {
@@ -47,7 +48,13 @@ class _DriftTestPageState extends State<DriftTestPage> {
         items = allItems;
         isLoading = false;
       });
-    } on Exception catch (e) {
+    } on Exception catch (e, stackTrace) {
+      AppLogger.logError(
+        'Failed to load todo items',
+        e,
+        stackTrace,
+        'DriftTestPage',
+      );
       setState(() => isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -69,7 +76,13 @@ class _DriftTestPageState extends State<DriftTestPage> {
             ),
           );
       await _loadItems();
-    } on Exception catch (e) {
+    } on Exception catch (e, stackTrace) {
+      AppLogger.logError(
+        'Failed to add todo item',
+        e,
+        stackTrace,
+        'DriftTestPage',
+      );
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error adding item: $e')),
