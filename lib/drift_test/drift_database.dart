@@ -19,12 +19,25 @@ class UserProfiles extends Table {
   DateTimeColumn get createdAt => dateTime()();
 }
 
-@DriftDatabase(tables: [TodoItems, UserProfiles])
+class BloodTestResults extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get userProfileId => integer().references(UserProfiles, #id)();
+  DateTimeColumn get testDate => dateTime()();
+  RealColumn get totalCholesterol => real().nullable()();
+  RealColumn get hdlCholesterol => real().nullable()();
+  RealColumn get ldlCholesterol => real().nullable()();
+  RealColumn get triglycerides => real().nullable()();
+  RealColumn get fastingGlucose => real().nullable()();
+  RealColumn get hba1c => real().nullable()();
+  DateTimeColumn get createdAt => dateTime()();
+}
+
+@DriftDatabase(tables: [TodoItems, UserProfiles, BloodTestResults])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration {
@@ -35,6 +48,9 @@ class AppDatabase extends _$AppDatabase {
       onUpgrade: (Migrator m, int from, int to) async {
         if (from < 2) {
           await m.createTable(userProfiles);
+        }
+        if (from < 3) {
+          await m.createTable(bloodTestResults);
         }
       },
     );
