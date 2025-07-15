@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:my_app/blood_test/view/blood_test_form_page.dart';
+import 'package:my_app/blood_test/view/blood_test_list_page.dart';
 import 'package:my_app/drift_test/drift_database.dart';
 import 'package:my_app/user_profile/cubit/user_profile_cubit.dart';
 import 'package:my_app/user_profile/cubit/user_profile_state.dart';
 import 'package:my_app/user_profile/repository/user_profile_repository.dart';
+import 'package:my_app/user_profile/widgets/blood_test_summary.dart';
 
 class UserProfileListPage extends StatelessWidget {
   const UserProfileListPage({super.key});
@@ -208,6 +211,46 @@ class UserProfileCard extends StatelessWidget {
                     'BMI',
                     _calculateBMI(profile.heightCm, profile.weightKg),
                     Icons.analytics,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            BloodTestSummary(userProfileId: profile.id),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => BloodTestListPage(
+                            userProfileId: profile.id,
+                          ),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.biotech, size: 16),
+                    label: const Text('Blood Tests'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => BloodTestFormPage(
+                            userProfileId: profile.id,
+                          ),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.add, size: 16),
+                    label: const Text('Add Test'),
                   ),
                 ),
               ],
