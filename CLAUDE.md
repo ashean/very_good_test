@@ -16,6 +16,20 @@
   - `dart format --line-length 80 --set-exit-if-changed lib test` - Proper formatting
 - All tests must pass before merging
 
+### Starting New Features
+Before starting work on a new feature:
+1. **Create GitHub issue** - Use `gh issue create` to track the feature
+2. **Get latest main** - Always pull latest changes: `git pull origin main`
+3. **Create feature branch** - Branch from updated main: `git checkout -b feature/description`
+
+Example workflow:
+```bash
+git checkout main
+git pull origin main
+gh issue create --title "feat: description" --body "feature details"
+git checkout -b feature/description
+```
+
 ### Branch Cleanup After Merge
 ```bash
 git checkout main
@@ -28,6 +42,26 @@ git remote prune origin
 - Use `flutter test` to run all tests
 - Use `flutter analyze lib test` for linting
 - Follow existing test patterns (bloc_test for cubits, widget tests for UI)
+
+#### End-to-End Testing with Playwright
+- **Run all e2e tests**: `npx playwright test e2e/comprehensive-flutter-app.spec.js --timeout=120000`
+- **Run specific test**: `npx playwright test e2e/comprehensive-flutter-app.spec.js --grep "test name" --timeout=120000`
+- **View test report**: `npx playwright show-report`
+- **Debug app structure**: `npx playwright test e2e/debug-flutter-app.spec.js --timeout=60000`
+
+**E2E Test Coverage (11 tests, ~46s runtime):**
+- Counter functionality (increment, decrement, reset)
+- Navigation between all app pages (Add Profile, View Profiles, Database Test)
+- User profile creation and management flow
+- Blood test feature availability checking
+- Performance and load time testing
+- UI responsiveness across viewport sizes (desktop/tablet/mobile)
+- Error handling and rapid interaction edge cases
+
+**Integration into Workflow:**
+- Run e2e tests after major features or before deployment
+- Tests verify the deployed app at `https://ashean.github.io/very_good_test/`
+- All tests use stable Flutter semantic node IDs for reliable automation
 
 ## Coding Standards
 
