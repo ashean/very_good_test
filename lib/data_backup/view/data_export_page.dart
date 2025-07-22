@@ -64,17 +64,17 @@ class _DataExportViewState extends State<DataExportView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Card(
+                const Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.info_outline, color: Colors.blue),
-                            const SizedBox(width: 8),
-                            const Text(
+                            Icon(Icons.info_outline, color: Colors.blue),
+                            SizedBox(width: 8),
+                            Text(
                               'Export Information',
                               style: TextStyle(
                                 fontSize: 18,
@@ -83,17 +83,17 @@ class _DataExportViewState extends State<DataExportView> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        const Text(
+                        SizedBox(height: 12),
+                        Text(
                           'This will export all your data including:',
                           style: TextStyle(fontSize: 16),
                         ),
-                        const SizedBox(height: 8),
-                        const Text('• Todo items'),
-                        const Text('• User profiles'),
-                        const Text('• Blood test results'),
-                        const SizedBox(height: 12),
-                        const Text(
+                        SizedBox(height: 8),
+                        Text('• Todo items'),
+                        Text('• User profiles'),
+                        Text('• Blood test results'),
+                        SizedBox(height: 12),
+                        Text(
                           'The exported data will be in JSON format that '
                           'copy and save as a backup file.',
                           style: TextStyle(

@@ -61,7 +61,6 @@ class _DataImportViewState extends State<DataImportView> {
               SnackBar(
                 content: Text('Import failed: ${state.message}'),
                 backgroundColor: Colors.red,
-                duration: const Duration(seconds: 4),
               ),
             );
           }
@@ -74,17 +73,17 @@ class _DataImportViewState extends State<DataImportView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Card(
+                  const Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.warning, color: Colors.orange),
-                              const SizedBox(width: 8),
-                              const Text(
+                              Icon(Icons.warning, color: Colors.orange),
+                              SizedBox(width: 8),
+                              Text(
                                 'Important Notes',
                                 style: TextStyle(
                                   fontSize: 18,
@@ -93,22 +92,22 @@ class _DataImportViewState extends State<DataImportView> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 12),
-                          const Text(
+                          SizedBox(height: 12),
+                          Text(
                             'Import Requirements:',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          const Text('• Database must be empty for import'),
-                          const Text(
+                          SizedBox(height: 8),
+                          Text('• Database must be empty for import'),
+                          Text(
                             '• JSON must be from the same schema version',
                           ),
-                          const Text('• All existing data will be replaced'),
-                          const SizedBox(height: 12),
-                          const Text(
+                          Text('• All existing data will be replaced'),
+                          SizedBox(height: 12),
+                          Text(
                             'Paste the exported JSON data into the text area '
                             'below.',
                             style: TextStyle(
