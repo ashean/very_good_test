@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:my_app/counter/counter.dart';
+import 'package:my_app/data_backup/view/data_export_page.dart';
+import 'package:my_app/data_backup/view/data_import_page.dart';
 import 'package:my_app/drift_test/drift_test_page.dart';
 import 'package:my_app/l10n/l10n.dart';
 import 'package:my_app/user_profile/user_profile.dart';
@@ -54,6 +56,47 @@ class CounterView extends StatelessWidget {
             ),
             icon: const Icon(Icons.storage),
             tooltip: 'Database Test',
+          ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.backup),
+            tooltip: 'Data Backup',
+            onSelected: (value) {
+              if (value == 'export') {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const DataExportPage(),
+                  ),
+                );
+              } else if (value == 'import') {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const DataImportPage(),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: 'export',
+                child: Row(
+                  children: [
+                    Icon(Icons.file_download),
+                    SizedBox(width: 8),
+                    Text('Export Data'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'import',
+                child: Row(
+                  children: [
+                    Icon(Icons.file_upload),
+                    SizedBox(width: 8),
+                    Text('Import Data'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
